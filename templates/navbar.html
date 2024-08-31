@@ -1,0 +1,62 @@
+<div class="navbar bg-gray-800 text-white p-4 flex flex-col items-center">
+    <div class="mb-4">
+        <form id="search-form" action="/search/" method="get" class="search-bar flex items-center">
+            <input type="text" id="crypto_currencies" name="query" list="crypto-list" placeholder="Search"
+                class="mr-2 p-2 border rounded-md text-black placeholder-gray-400 focus:ring focus:ring-blue-300 focus:border-blue-300">
+            <button id="searchBtn" type="submit" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
+                <img src="./../static/searchIcon.png" height="20px" width="20px" alt="Search">
+            </button>
+        </form>
+    </div>
+    <span id="validation-error" class="error text-red-500 mb-1"></span>
+    <datalist id="crypto-list">
+        <option value="BTC">
+        <option value="ETH">
+    </datalist>
+    <div class="flex-grow"></div>
+    <div class="login-button">
+        {% if logged_in %}
+        <a href="#" class="text-blue-300 hover:underline">Log Out</a>
+        {% else %}
+        <a href="" class="text-blue-300 hover:underline">Log In</a>
+        {% endif %}
+    </div>
+</div>
+<script>
+    const input = document.getElementById('crypto_currencies');
+    const errorSpan = document.getElementById('validation-error');
+    const cryptoList = document.getElementById('crypto-list');
+    const searchBtn = document.getElementById('searchBtn');
+
+    input.addEventListener('input', () => {
+        const inputValue = input.value.toLowerCase();
+        const options = Array.from(cryptoList.options).map(option => option.value.toLowerCase());
+
+        if (options.includes(inputValue)) {
+            errorSpan.textContent = '';
+            searchBtn.disabled = false;
+            searchBtn.style.display = 'block';
+        } else {
+            errorSpan.textContent = 'Invalid crypto. Please select from the list.';
+            errorSpan.classList.add('text-red-500');
+            searchBtn.disabled = true;
+            searchBtn.style.display = 'none';
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchForm = document.getElementById('search-form');
+        const input = document.getElementById('crypto_currencies');
+
+        searchForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const inputValue = input.value.trim().toLowerCase();
+            if (inputValue) {
+                const searchURL = `/search/${encodeURIComponent(inputValue)}`;
+                searchForm.action = searchURL; // Update form action
+                searchForm.submit(); // Submit the form
+            }
+        });
+    });
+</script>

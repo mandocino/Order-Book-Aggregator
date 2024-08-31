@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+
+<div class="border rounded-lg overflow-hidden">
+    <div class="flex">
+        <button class="py-2 px-4 border-r border-gray-300 bg-gray-200 hover:bg-gray-300"
+            onclick="openTab('tab1')">Chart</button>
+        <button class="py-2 px-4 border-r border-gray-300 bg-gray-200 hover:bg-gray-300"
+            onclick="openTab('tab2')">Chat</button>
+        <button class="py-2 px-4 bg-gray-200 hover:bg-gray-300" onclick="openTab('tab3')">Info</button>
+    </div>
+
+    <div class="p-4">
+        <div class="tab" id="tab1">
+            <h1 class="text-4xl font-bold text-center mb-4">{{ query|upper }} OrderBook</h1>
+            <div id="plotly-chart"></div>
+            <script>
+                var figJson = {{ plot_json | safe }};
+                var plotlyDiv = document.getElementById('plotly-chart');
+                var layout = {
+                    height: 850,
+                };
+                Plotly.newPlot(plotlyDiv, figJson.data, layout);
+            </script>
+        </div>
+        <div class="tab hidden" id="tab2">
+            <h2 class="text-lg font-semibold mb-2">Tab 2 Content</h2>
+            <p>This is the content of Tab 2.</p>
+        </div>
+        <div class="tab hidden" id="tab3">
+            <h2 class="text-lg font-semibold mb-2">Tab 3 Content</h2>
+            <p>This is the content of Tab 3.</p>
+        </div>
+    </div>
+</div>
+<script>
+    function openTab(tabId) {
+        // Hide all tab content
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.style.display = 'none';
+        });
+
+        // Show the selected tab content
+        const selectedTab = document.getElementById(tabId);
+        selectedTab.style.display = 'block';
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,3 @@
+kucoin|USER|PASS
+kraken|USER|PASS
+binance|USER|PASS

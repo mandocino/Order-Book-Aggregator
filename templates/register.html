@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<div class="bg-gray-100 flex items-center justify-center p-9">
+    <div class="bg-white rounded-lg shadow-md p-8 w-96 ">
+        <h1 class="text-2xl font-semibold mb-4">Account Registration</h1>
+        <form action="/register" method="POST">
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-600">Username</label>
+                <input name="username" type="text" class="mt-1 p-2 w-full border rounded-md">
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-600">Email</label>
+                <input name="email" type="email" class="mt-1 p-2 w-full border rounded-md">
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-600">Password</label>
+                <input name="password" type="password" class="mt-1 p-2 w-full border rounded-md">
+            </div>
+            <button type="submit"
+                class="bg-blue-500 text-white p-2 w-full rounded-md hover:bg-blue-600">Register</button>
+        </form>
+        <p class="mt-4 text-sm text-center text-gray-500">Already have an account? <a href=""
+                class="text-blue-500 hover:underline">Log in</a></p>
+    </div>
+</div>
+{% endblock %}

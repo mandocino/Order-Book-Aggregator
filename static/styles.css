@@ -1,0 +1,60 @@
+
+.error {
+   color: red;
+   padding-left: 10px;
+}
+body {
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+}
+
+.tab {
+   display: none;
+ }
+.navbar {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #333;
+   padding: 10px;
+   color: white;
+}
+
+.search-bar {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex: 1;
+}
+
+.search-bar input[type="text"] {
+   padding: 8px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+
+}
+
+.search-bar button {
+   background-color: transparent;
+   border: none;
+   margin-left: 5px;
+}
+
+.login-button {
+   margin-right: 10px;
+}
+
+.center-content {
+    text-align: center;
+    padding: 50px;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+}
